@@ -3,7 +3,7 @@
 
 This is a simple on-screen calculator web application built using HTML, CSS, and JavaScript. With this calculator, you can perform basic arithmetic calculations such as addition, subtraction, multiplication, and division.
 
-![Calculator Screenshot](https://drive.google.com/file/d/1WMhv1myohIzQ-vO4tjgTgI0LBxNDT2lI/view?usp=sharing)
+![Calculator Screenshot](https://imgur.com/EdP2AOJ.png)
 
 ## Features
 
