@@ -19,3 +19,18 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
+
+
+.button {
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button.equal {
+    background-color: #f0f0f0;
+    color: #333;
+}
