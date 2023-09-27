@@ -1,4 +1,3 @@
-```markdown
 # On-Screen Calculator
 
 This is a simple on-screen calculator web application built using HTML, CSS, and JavaScript. With this calculator, you can perform basic arithmetic calculations such as addition, subtraction, multiplication, and division.
