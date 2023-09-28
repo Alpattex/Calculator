@@ -18,7 +18,7 @@ To run this calculator locally, follow these steps:
 1. Clone this repository to your local machine:
 
    ```shell
-   git clone https://github.com/alpattex/on-screen-calculator.git
+   git clone https://github.com/Alpattex/on-screen-calculator.git
    ```
 
 2. Navigate to the project directory:
