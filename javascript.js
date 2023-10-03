@@ -1,67 +1,66 @@
-const display = document.getElementById('display');
-const buttons = document.querySelectorAll('.btn');
-const clearButton = document.getElementById('clear');
-const equalsButton = document.getElementById('equals');
+// Select elements
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll(".button");
 
-let currentInput = '';
-let operator = '';
-let result = '';
+// Initialize the calculator state
+let currentInput = "";
+let operator = "";
+let result = null;
 
-buttons.forEach(button => {
-    button.addEventListener('click', () => handleButtonClick(button.textContent));
-});
+// Add click event listeners to buttons
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const buttonText = button.textContent;
 
-clearButton.addEventListener('click', clearDisplay);
-equalsButton.addEventListener('click', performCalculation);
+    // Handle numeric buttons
+    if (!isNaN(buttonText) || buttonText === ".") {
+      currentInput += buttonText;
+      display.textContent = currentInput;
+    }
 
-function handleButtonClick(value) {
-    if (value >= '0' && value <= '9') {
-        currentInput += value;
-    } else if (value === '.' && !currentInput.includes('.')) {
-        currentInput += value;
-    } else if (value === 'C') {
-        clearDisplay();
-    } else if (value === '=') {
-        performCalculation();
-        operator = '';
-    } else {
-        if (currentInput !== '') {
-            if (operator !== '') {
-                performCalculation();
+    // Handle operator buttons
+    if (["+", "-", "*", "/"].includes(buttonText)) {
+      operator = buttonText;
+      if (currentInput !== "") {
+        result = parseFloat(currentInput);
+        currentInput = "";
+      }
+    }
+
+    // Handle equals button
+    if (buttonText === "=") {
+      if (currentInput !== "") {
+        const secondOperand = parseFloat(currentInput);
+        switch (operator) {
+          case "+":
+            result += secondOperand;
+            break;
+          case "-":
+            result -= secondOperand;
+            break;
+          case "*":
+            result *= secondOperand;
+            break;
+          case "/":
+            if (secondOperand !== 0) {
+              result /= secondOperand;
             } else {
-                result = currentInput;
+              display.textContent = "Error";
+              return;
             }
-            operator = value;
-            currentInput = '';
+            break;
         }
+        display.textContent = result;
+        currentInput = "";
+      }
     }
-    display.value = `${result} ${operator} ${currentInput}`;
-}
 
-
-
-function performCalculation() {
-    if (currentInput !== '') {
-        if (operator === '+') {
-            result = (parseFloat(result) + parseFloat(currentInput)).toString();
-        } else if (operator === '-') {
-            result = (parseFloat(result) - parseFloat(currentInput)).toString();
-        } else if (operator === '*') {
-            result = (parseFloat(result) * parseFloat(currentInput)).toString();
-        } else if (operator === '/') {
-            result = (parseFloat(result) / parseFloat(currentInput)).toString();
-        } else {
-            result = currentInput;
-        }
+    // Handle clear button
+    if (buttonText === "C") {
+      currentInput = "";
+      operator = "";
+      result = null;
+      display.textContent = "0";
     }
-    currentInput = '';
-    operator = '';
-    display.value = result;
-}
-
-function clearDisplay() {
-    currentInput = '';
-    operator = '';
-    result = '';
-    display.value = '';
-}
+  });
+});
